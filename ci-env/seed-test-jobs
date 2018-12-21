@@ -1,0 +1,9 @@
+seed_jobs:
+  test-echo:
+    source:
+      remote: git@github.com:TikalCI/tci-pipelines.git
+      branch: '${TCI_PIPELINES_BRANCH}'
+      credentialsId: gitsshkey
+
+    pipeline: test/tpl/vars/tplEcho/Jenkinsfile
+    executeWhen: never
