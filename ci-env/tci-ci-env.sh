@@ -28,7 +28,7 @@ if [[ "$action" == "clean" || "$action" == "clean-restart" || "$action" == "clea
     # TODO clean files to enable fresh start
 fi
 
-if [[ "$action" == "stop" || "$action" == "restart" || "$action" == "clean-restart" || "$action" == "reset" ]]; then
+if [[ "$action" == "reset" ]]; then
    rm -rf .data
    docker rmi tci-master
 fi
