@@ -61,6 +61,10 @@ if [[ "$action" == "start" || "$action" == "clean-start"  || "$action" == "resta
 
     cat config.yml.template > config.yml
     cat seed-test-jobs >> config.yml
+    mkdir -p .data/jenkins_home/userContent
+    cp -f ../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
+    cp -f ../src/resources/config/tci.css .data/jenkins_home/userContent | true
+    cp -f ../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
     docker-compose up -d
     sleep 2
     docker-compose logs -f
