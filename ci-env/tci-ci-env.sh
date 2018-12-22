@@ -18,12 +18,22 @@ fi
 export TCI_HOST_IP="$(/sbin/ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1 | sed -e 's/addr://')"
 export GIT_PRIVATE_KEY=`cat $GITHUB_PRIVATE_KEY_FILE_PATH`
 
-if [[ "$action" == "stop" || "$action" == "restart" ]]; then
+if [[ "$action" == "stop" || "$action" == "restart" || "$action" == "clean-restart" || "$action" == "reset" ]]; then
    docker-compose down --remove-orphans
    sleep 2
 fi
 
-if [[ "$action" == "start" || "$action" == "restart" ]]; then
+if [[ "$action" == "clean" || "$action" == "clean-restart" || "$action" == "clean-start" ]]; then
+    echo 'Nothing to do for now'
+    # TODO clean files to enable fresh start
+fi
+
+if [[ "$action" == "stop" || "$action" == "restart" || "$action" == "clean-restart" || "$action" == "reset" ]]; then
+   rm -rf .data
+   docker rmi tci-master
+fi
+
+if [[ "$action" == "start" || "$action" == "clean-start"  || "$action" == "restart" || "$action" == "clean-restart" || "$action" == "reset" ]]; then
 
     if [ -d tci-master ]; then
         cd tci-master
@@ -32,6 +42,7 @@ if [[ "$action" == "start" || "$action" == "restart" ]]; then
         git clone git@github.com:TikalCI/tci-master.git
         cd tci-master
     fi
+    git fetch origin
     git checkout $TCI_MASTER_BRANCH | true
     git pull origin $TCI_MASTER_BRANCH
     docker build -t tci-master .

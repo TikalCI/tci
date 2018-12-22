@@ -24,10 +24,10 @@ clouds:
     type: docker
     dockerHostUri: 'unix:///var/run/docker.sock'
     templates:
-      - name: docker-slave
+      - name: jenkins-jnlp-slave
         image: odavid/jenkins-jnlp-slave:latest
         labels:
-          - generic
+          - docker-slave
         remoteFs: /home/jenkins
         jvmArgs: -Xmx1g
         volumes:
