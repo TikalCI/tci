@@ -9,7 +9,7 @@ credentials:
   gitsshkey:
     type: sshkey
     description: gitsshkey
-    username: yorammi
+    username: gitsshkey
     passphrase:
     privatekey: |
       ${GIT_PRIVATE_KEY}
