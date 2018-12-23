@@ -34,7 +34,6 @@ if [[ "$action" == "stop" || "$action" == "restart" || "$action" == "clean-resta
 fi
 
 if [[ "$action" == "clean" || "$action" == "clean-restart" || "$action" == "clean-start" ]]; then
-    echo 'Nothing to do for now'
     # TODO clean files to enable fresh start
 fi
 
