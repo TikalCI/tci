@@ -2,7 +2,8 @@
 
 # prepare set-env,sh script from template
 if [ ! -f .config ]; then
-    cp ../src/resources/templates/template.config .config
+    echo copy template
+    cp ../src/resources/templates/dev-env/template.config .config
 fi
 
 # activate set-env.sh script
@@ -58,8 +59,8 @@ if [[ "$action" == "start" || "$action" == "clean-start"  || "$action" == "resta
 
     cd ..
 
-    cat ../src/resources/templates/base.config.yml > config.yml
-    cat ../src/resources/templates/seed.test.jobs.yml >> config.yml
+    cat ../src/resources/templates/dev-env/base.config.yml > config.yml
+    cat ../src/resources/templates/dev-env/seed.test.jobs.yml >> config.yml
     mkdir -p .data/jenkins_home/userContent
     cp -f ../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
     cp -f ../src/resources/config/tci.css .data/jenkins_home/userContent | true

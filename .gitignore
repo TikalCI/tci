@@ -1,5 +1,5 @@
-# ci-env
-ci-env/tci-master/
-ci-env/.config
+# dev-env
+dev-env/tci-master/
+dev-env/.config*
 .data/
 config.yml
