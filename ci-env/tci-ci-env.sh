@@ -1,13 +1,12 @@
 #!/bin/bash
 
 # prepare set-env,sh script from template
-if [ ! -f set-env.sh ]; then
-    cp set-env.sh.template set-env.sh
-    chmod +x set-env.sh
+if [ ! -f .config ]; then
+    cp ../src/resources/templates/template.config .config
 fi
 
 # activate set-env.sh script
-. set-env.sh
+source .config
 
 # set action defaulted to 'restart'
 action='restart'
@@ -59,8 +58,8 @@ if [[ "$action" == "start" || "$action" == "clean-start"  || "$action" == "resta
 
     cd ..
 
-    cat config.yml.template > config.yml
-    cat seed-test-jobs >> config.yml
+    cat ../src/resources/templates/base.config.yml > config.yml
+    cat ../src/resources/templates/seed.test.jobs.yml >> config.yml
     mkdir -p .data/jenkins_home/userContent
     cp -f ../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
     cp -f ../src/resources/config/tci.css .data/jenkins_home/userContent | true
