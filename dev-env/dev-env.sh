@@ -44,19 +44,23 @@ fi
 
 if [[ "$action" == "start" || "$action" == "clean-start"  || "$action" == "restart" || "$action" == "clean-restart" || "$action" == "reset" ]]; then
 
-    if [ -d tci-master ]; then
-        cd tci-master
+    if [[ "$TCI_MASTER_BUILD_LOCAL" == "true" ]]; then
+        if [ -d tci-master ]; then
+            cd tci-master
+            git fetch origin
+        else
+            git clone git@github.com:TikalCI/tci-master.git
+            cd tci-master
+        fi
         git fetch origin
+        git checkout $TCI_MASTER_BRANCH | true
+        git pull origin $TCI_MASTER_BRANCH
+        docker build -t tci-master .
+        cd ..
     else
-        git clone git@github.com:TikalCI/tci-master.git
-        cd tci-master
+        docker pull tikalci/tci-master
+        docker tag tikalci/tci-master tci-master
     fi
-    git fetch origin
-    git checkout $TCI_MASTER_BRANCH | true
-    git pull origin $TCI_MASTER_BRANCH
-    docker build -t tci-master .
-
-    cd ..
 
     cat ../src/resources/templates/dev-env/base.config.yml > config.yml
     cat ../src/resources/templates/dev-env/seed.test.jobs.yml >> config.yml
