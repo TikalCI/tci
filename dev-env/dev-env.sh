@@ -19,7 +19,7 @@ export GIT_PRIVATE_KEY=`cat $GITHUB_PRIVATE_KEY_FILE_PATH`
 
 
 if [[ "$action" == "reset" ]]; then
-    read -p "Are you sure you want to reset tci? [y/N]" -n 1 -r
+    read -p "Are you sure you want to reset tci dev-env [y/N]? " -n 1 -r
     echo    # (optional) move to a new line
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
