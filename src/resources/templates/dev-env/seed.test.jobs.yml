@@ -1,0 +1,9 @@
+seed_jobs:
+  test-tciGeneral:
+    source:
+      remote: git@github.com:TikalCI/tci-pipelines.git
+      branch: '${TCI_PIPELINES_BRANCH}'
+      credentialsId: gitsshkey
+
+    pipeline: test/tci/tciGeneral/Jenkinsfile
+    executeWhen: never
