@@ -13,7 +13,7 @@ action='restart'
 if [[ $# > 0 ]]; then
    action=$1
 fi
-echo 1 TCI_HOST_IP=$TCI_HOST_IP
+
 if [ ! -n "$TCI_HOST_IP" ]; then
     export TCI_HOST_IP="$(/sbin/ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1 | sed -e 's/addr://')"
 fi
