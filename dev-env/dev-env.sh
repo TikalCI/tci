@@ -13,12 +13,11 @@ action='restart'
 if [[ $# > 0 ]]; then
    action=$1
 fi
-
-if [ -n "$TCI_HOST_IP" ]; then
+echo 1 TCI_HOST_IP=$TCI_HOST_IP
+if [ ! -n "$TCI_HOST_IP" ]; then
     export TCI_HOST_IP="$(/sbin/ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1 | sed -e 's/addr://')"
 fi
 export GIT_PRIVATE_KEY=`cat $GITHUB_PRIVATE_KEY_FILE_PATH`
-
 
 if [[ "$action" == "reset" ]]; then
     read -p "Are you sure you want to reset tci dev-env [y/N]? " -n 1 -r
@@ -68,7 +67,7 @@ if [[ "$action" == "start" || "$action" == "clean-start"  || "$action" == "resta
     cat ../src/resources/templates/dev-env/seed.test.jobs.yml >> config.yml
     mkdir -p .data/jenkins_home/userContent
     cp -f ../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
-    cp -f ../src/resources/config/tci.css .data/jenkins_home/userContent | true
+    cp -f ../src/resources/config/tci-dev-env.css .data/jenkins_home/userContent/tci.css | true
     cp -f ../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
     docker-compose up -d
     sleep 2
