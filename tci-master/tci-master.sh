@@ -35,7 +35,7 @@ if [[ "$action" == "start"  || "$action" == "restart" ]]; then
 
     mkdir -p .data/jenkins_home/userContent
     cp -f ../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
-    cp -f ../src/resources/config/tci-master.css .data/jenkins_home/userContent/tci.css | true
+    cp -f ../src/resources/config/templates/tci-master/tci.css .data/jenkins_home/userContent | true
     cp -f ../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
     docker-compose up -d
     sleep 2
