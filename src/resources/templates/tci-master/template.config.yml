@@ -1,0 +1,46 @@
+security:
+  realm: jenkins_database
+  adminPassword: admin
+
+  remove_master_envvars:
+  - '.*PASSWORD.*'
+
+credentials:
+  gitsshkey:
+    type: sshkey
+    description: gitsshkey
+    username: gitsshkey
+    passphrase:
+    privatekey: |
+      ${GIT_PRIVATE_KEY}
+tools:
+  installations:
+    maven:
+      type: maven
+      installers:
+        - id: '3.6.0'
+clouds:
+  docker-cloud:
+    type: docker
+    dockerHostUri: 'unix:///var/run/docker.sock'
+    templates:
+      - name: jenkins-jnlp-slave
+        image: odavid/jenkins-jnlp-slave:latest
+        labels:
+          - docker-slave
+        remoteFs: /home/jenkins
+        jvmArgs: -Xmx1g
+        volumes:
+          - '/var/run/docker.sock:/var/run/docker.sock'
+        instanceCap: '10'
+
+pipeline_libraries:
+  tci-library:
+    source:
+      remote: git@github.com:TikalCI/tci-library.git
+      credentialsId: gitsshkey
+    defaultVersion: master
+    implicit: false
+    allowVersionOverride: true
+    includeInChangesets: true
+

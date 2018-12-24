@@ -1,5 +1,4 @@
-# dev-env
 dev-env/tci-master/
-dev-env/.config*
+.config*
 .data/
 config.yml
