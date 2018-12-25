@@ -20,7 +20,7 @@ tools:
       installers:
         - id: '3.6.0'
 clouds:
-  docker-cloud:
+  tci-jnlp-nodes:
     type: docker
     dockerHostUri: 'unix:///var/run/docker.sock'
     templates:
