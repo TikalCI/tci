@@ -5,5 +5,14 @@ seed_jobs:
       branch: '${TCI_PIPELINES_BRANCH}'
       credentialsId: gitsshkey
 
-    pipeline: test/tci/tciGeneral/Jenkinsfile
+    pipeline: src/test/tciGeneral/Jenkinsfile
+    executeWhen: never
+
+  test-tciOverall:
+    source:
+      remote: git@github.com:TikalCI/tci-pipelines.git
+      branch: '${TCI_PIPELINES_BRANCH}'
+      credentialsId: gitsshkey
+
+    pipeline: src/test/tciOverallSimple/Jenkinsfile
     executeWhen: never
