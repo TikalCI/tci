@@ -41,14 +41,23 @@ if [[ "$action" == "start"  || "$action" == "restart" ]]; then
 
     mkdir -p .data/jenkins_home/userContent
     cp -f ../../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
-    cp -f ../../src/resources/config/templates/tci-server/tci.css .data/jenkins_home/userContent | true
+    cp -f ../../src/resources/templates/tci-server/tci.css .data/jenkins_home/userContent | true
     cp -f ../../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
     docker-compose up -d
     sleep 2
+    counter=0
     docker-compose logs -f | while read LOGLINE
     do
-       echo -n .
-       [[ "${LOGLINE}" == *"Entering quiet mode. Done..."* ]] && pkill -P $$ docker-compose
+        if [[ $counter == 0 ]]; then
+            echo -n "*"
+        else
+            echo -n .
+        fi
+        [[ "${LOGLINE}" == *"Entering quiet mode. Done..."* ]] && pkill -P $$ docker-compose
+        counter=$(( $counter + 1 ))
+        if [[ $counter == 5 ]]; then
+            counter=0
+        fi
     done
 
 fi
