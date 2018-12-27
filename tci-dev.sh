@@ -2,13 +2,13 @@
 
 set -e
 
-cd tci-dev
+cd environments/tci-dev
 
 if [ ! -f .config ]; then
-    cp ../src/resources/templates/tci-dev/template.config .config
+    cp ../../src/resources/templates/tci-dev/template.config .config
 fi
 if [ ! -f docker-compose.yml ]; then
-    cp ../src/resources/templates/tci-dev/template.docker-compose.yml docker-compose.yml
+    cp ../../src/resources/templates/tci-dev/template.docker-compose.yml docker-compose.yml
 fi
 
 # activate set-env.sh script
@@ -69,12 +69,12 @@ if [[ "$action" == "start" || "$action" == "clean-start"  || "$action" == "resta
         docker tag tikalci/tci-master tci-master
     fi
 
-    cat ../src/resources/templates/tci-dev/base.config.yml > config.yml
-    cat ../src/resources/templates/tci-dev/seed.test.jobs.yml >> config.yml
+    cat ../../src/resources/templates/tci-dev/base.config.yml > config.yml
+    cat ../../src/resources/templates/tci-dev/seed.test.jobs.yml >> config.yml
     mkdir -p .data/jenkins_home/userContent
-    cp -f ../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
-    cp -f ../src/resources/templates/tci-dev/tci.css .data/jenkins_home/userContent | true
-    cp -f ../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
+    cp -f ../../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
+    cp -f ../../src/resources/templates/tci-dev/tci.css .data/jenkins_home/userContent | true
+    cp -f ../../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
     docker-compose up -d
     sleep 2
     docker-compose logs -f | while read LOGLINE
