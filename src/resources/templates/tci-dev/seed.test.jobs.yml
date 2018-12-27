@@ -34,3 +34,12 @@ seed_jobs:
 
     pipeline: src/pipelines/test/tciTestJobs/Jenkinsfile
     executeWhen: never
+
+  test-tciGit:
+    source:
+      remote: git@github.com:TikalCI/tci-pipelines.git
+      branch: '${TCI_PIPELINES_BRANCH}'
+      credentialsId: gitsshkey
+
+    pipeline: src/pipelines/test/tciTestGit/Jenkinsfile
+    executeWhen: never
