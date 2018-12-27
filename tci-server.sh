@@ -2,6 +2,7 @@
 
 set -e
 
+mkdir -p environments/tci-server
 cd environments/tci-server
 
 if [ ! -f .config ]; then
