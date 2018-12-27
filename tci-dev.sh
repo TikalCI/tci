@@ -26,8 +26,20 @@ if [ ! -n "$TCI_HOST_IP" ]; then
 fi
 export GIT_PRIVATE_KEY=`cat $GITHUB_PRIVATE_KEY_FILE_PATH`
 
-if [[ "$action" == "reset" ]]; then
-    read -p "Are you sure you want to reset tci tci-dev [y/N]? " -n 1 -r
+if [[ "$TCI_MASTER_BUILD_LOCAL" == "true" ]]; then
+    echo [tci-master branch] $TCI_MASTER_BRANCH
+fi
+echo [tci-library branch] $TCI_LIBRARY_BRANCH
+echo [tci-pipelines branch] $TCI_PIPELINES_BRANCH
+echo [Server host IP address] TCI_HOST_IP
+echo [Private SSH key file path] $GITHUB_PRIVATE_KEY_FILE_PATH
+if [[ "$action" == "status" ]]; then
+    exit 0
+fi
+
+
+if [[ "$action" == "reset" || "$action" == "stop-reset" ]]; then
+    read -p "Are you sure you want to reset TCI tci-dev [y/N]? " -n 1 -r
     echo    # (optional) move to a new line
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
@@ -35,7 +47,7 @@ if [[ "$action" == "reset" ]]; then
     fi
 fi
 
-if [[ "$action" == "stop" || "$action" == "restart" || "$action" == "clean-restart" || "$action" == "reset" ]]; then
+if [[ "$action" == "stop" || "$action" == "restart" || "$action" == "clean-restart" || "$action" == "reset" || "$action" == "stop-reset" ]]; then
    docker-compose down --remove-orphans
    sleep 2
 fi
@@ -45,7 +57,7 @@ if [[ "$action" == "clean" || "$action" == "clean-restart" || "$action" == "clea
     # TODO clean files to enable fresh start
 fi
 
-if [[ "$action" == "reset" ]]; then
+if [[ "$action" == "reset" || "$action" == "stop-reset" ]]; then
    rm -rf .data
    docker rmi tci-master
 fi
