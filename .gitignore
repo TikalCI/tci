@@ -1,4 +1,4 @@
-tci-dev/tci-master
+environments
 .config*
 .data/
 config.yml

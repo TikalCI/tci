@@ -4,9 +4,11 @@ set -e
 
 cd tci-dev
 
-# prepare set-env,sh script from template
 if [ ! -f .config ]; then
     cp ../src/resources/templates/tci-dev/template.config .config
+fi
+if [ ! -f docker-compose.yml ]; then
+    cp ../src/resources/templates/tci-dev/template.docker-compose.yml docker-compose.yml
 fi
 
 # activate set-env.sh script
