@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -e
+
+cd tci-server
+
 # prepare set-env,sh script from template
 if [ ! -f .config ]; then
     cp ../src/resources/templates/tci-server/template.config .config
@@ -39,5 +43,10 @@ if [[ "$action" == "start"  || "$action" == "restart" ]]; then
     cp -f ../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
     docker-compose up -d
     sleep 2
-    docker-compose logs -f
+    docker-compose logs -f | while read LOGLINE
+    do
+       echo -n .
+       [[ "${LOGLINE}" == *"Entering quiet mode. Done..."* ]] && pkill -P $$ docker-compose
+    done
+
 fi
