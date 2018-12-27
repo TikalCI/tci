@@ -29,11 +29,11 @@ export GIT_PRIVATE_KEY=`cat $GITHUB_PRIVATE_KEY_FILE_PATH`
 if [[ "$TCI_MASTER_BUILD_LOCAL" == "true" ]]; then
     echo [tci-master branch] $TCI_MASTER_BRANCH
 fi
-echo [tci-library branch] $TCI_LIBRARY_BRANCH
-echo [tci-pipelines branch] $TCI_PIPELINES_BRANCH
-echo [Server host IP address] TCI_HOST_IP
-echo [Private SSH key file path] $GITHUB_PRIVATE_KEY_FILE_PATH
-if [[ "$action" == "status" ]]; then
+if [[ "$action" == "info" ]]; then
+    echo [tci-library branch] $TCI_LIBRARY_BRANCH
+    echo [tci-pipelines branch] $TCI_PIPELINES_BRANCH
+    echo [Server host IP address] $TCI_HOST_IP
+    echo [Private SSH key file path] $GITHUB_PRIVATE_KEY_FILE_PATH
     exit 0
 fi
 
