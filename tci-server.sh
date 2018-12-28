@@ -6,13 +6,13 @@ mkdir -p environments/tci-server
 cd environments/tci-server
 
 if [ ! -f .config ]; then
-    cp ../../src/resources/templates/tci-server/template.config .config
+    cp ../../src/resources/config/tci-server/template.config .config
 fi
 if [ ! -f docker-compose.yml ]; then
-    cp ../../src/resources/templates/tci-server/template.docker-compose.yml docker-compose.yml
+    cp ../../src/resources/config/tci-server/template.docker-compose.yml docker-compose.yml
 fi
 if [ ! -f .config.yml ]; then
-    cp ../../src/resources/templates/tci-server/template.config.yml config.yml
+    cp ../../src/resources/config/tci-server/template.config.yml config.yml
 fi
 
 # activate set-env.sh script
@@ -30,6 +30,12 @@ fi
 export GIT_PRIVATE_KEY=`cat $GITHUB_PRIVATE_KEY_FILE_PATH`
 
 
+if [[ "$action" == "info" ]]; then
+    echo [Server host IP address] $TCI_HOST_IP
+    echo [Private SSH key file path] $GITHUB_PRIVATE_KEY_FILE_PATH
+    exit 0
+fi
+
 if [[ "$action" == "stop" || "$action" == "restart" ]]; then
    docker-compose down --remove-orphans
    sleep 2
@@ -42,7 +48,7 @@ if [[ "$action" == "start"  || "$action" == "restart" ]]; then
 
     mkdir -p .data/jenkins_home/userContent
     cp -f ../../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
-    cp -f ../../src/resources/templates/tci-server/tci.css .data/jenkins_home/userContent | true
+    cp -f ../../src/resources/config/tci-server/tci.css .data/jenkins_home/userContent | true
     cp -f ../../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
     docker-compose up -d
     sleep 2
