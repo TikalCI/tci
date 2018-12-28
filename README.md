@@ -27,6 +27,6 @@ The _**./tci-dev-env.sh**_ script have the following actions: **start**, **stop*
 
 The loaded server is already configured to work with [<img src="./src/resources/images/tci-library.png" width="40" height="40"> tci-library](https://github.com/TikalCI/tci-library) and you can start working with it and use [<img src="./src/resources/images/tci-pipelines.png" width="40" height="40"> tci-pipelines](https://github.com/TikalCI/tci-library) as a reference as well.
 
-If you want to participate in the TCI project as an active contributer, please refer to [<img src="./src/resources/images/tci-dev-env.png" width="40" height="40"> tci-dev-env](https://github.com/TikalCI/tci-dev-env).
+If you want to participate in the TCI project as an active contributer, please refer to [<img src="./src/resources/images/tci-dev.png" width="40" height="40"> tci-dev-env](https://github.com/TikalCI/tci-dev-env).
 
 
