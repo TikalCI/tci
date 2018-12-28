@@ -9,6 +9,8 @@ We this repository, you can establish 2 kind of TCI Jenkins server types:
 * <img src="./src/resources/images/tci-server.png" width="80" height="80"> **tci-server** - for loading a well-established Jenkins server.
 * <img src="./src/resources/images/tci-local.png" width="80" height="80"> **tci-local** - for loading a local developement Jenkins environment.(Work in progress)
 
+### ***tci-server establishment instructions***
+
 In order to establish a <img src="./src/resources/images/tci-server.png" width="20" height="20"> **tci-server**, follow the below instructions on the server you want to host it:
 
 1. Make sure you have the following commands installed: **git**, **docker** & **docker-compose**.
