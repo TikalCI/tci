@@ -4,6 +4,8 @@
 
 
 ### ***TCI - Tikal Jenkins-based CI solution***
+Powered by **[Tikal Knowledge](http://www.tikalk.com)** and the community.
+<hr/>
 
 We this repository, you can establish 2 kind of TCI Jenkins server types:
 * <img src="./src/resources/images/tci-server.png" width="80" height="80"> **tci-server** - for loading a well-established Jenkins server.
