@@ -2,7 +2,6 @@
 
 ![tci](src/resources/images/tci.png)
 
-
 ### ***TCI - Tikal Jenkins-based CI solution***
 Powered by **[Tikal Knowledge](http://www.tikalk.com)** and the community.
 <hr/>
