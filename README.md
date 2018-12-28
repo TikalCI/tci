@@ -29,3 +29,4 @@ The _**./tci-server.sh**_ script have the following actions: **start**, **stop**
 The loaded server is already configured to work with [<img src="./src/resources/images/tci-library.png" width="60" height="60"> tci-library](https://github.com/TikalCI/tci-library) so you can start working with it and<br/>use [<img src="./src/resources/images/tci-pipelines.png" width="60" height="60"> tci-pipelines](https://github.com/TikalCI/tci-pipelines) as a reference as well.
 
 If you want to participate in the TCI project as an active contributor, please refer to [<img src="./src/resources/images/tci-dev.png" width="60" height="60"> tci-dev-env](https://github.com/TikalCI/tci-dev-env).
+
