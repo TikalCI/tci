@@ -21,6 +21,6 @@ In order to establish a <img src="./src/resources/images/tci-server.png" width="
 
 Once the server is up, you can modify it (e.g. add LDAP configuration, add seed jobs, add credentials and much more) following the instructions as in [tci-master](https://github.com/TikalCI/tci-master).
 
-The _**./tci-dev-env.sh**_ script have the following actions: start, stop, restart, info.
+The _**./tci-dev-env.sh**_ script have the following actions: **start**, **stop**, **restart**, **info**.
 
 
