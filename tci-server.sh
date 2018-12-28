@@ -30,6 +30,12 @@ fi
 export GIT_PRIVATE_KEY=`cat $GITHUB_PRIVATE_KEY_FILE_PATH`
 
 
+if [[ "$action" == "info" ]]; then
+    echo [Server host IP address] $TCI_HOST_IP
+    echo [Private SSH key file path] $GITHUB_PRIVATE_KEY_FILE_PATH
+    exit 0
+fi
+
 if [[ "$action" == "stop" || "$action" == "restart" ]]; then
    docker-compose down --remove-orphans
    sleep 2
