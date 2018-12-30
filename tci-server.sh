@@ -11,7 +11,7 @@ fi
 if [ ! -f docker-compose.yml ]; then
     cp ../../src/resources/config/tci-server/template.docker-compose.yml docker-compose.yml
 fi
-if [ ! -f .config.yml ]; then
+if [ ! -f config.yml ]; then
     cp ../../src/resources/config/tci-server/template.config.yml config.yml
 fi
 if [ ! -f tci.css ]; then
