@@ -14,6 +14,12 @@ fi
 if [ ! -f .config.yml ]; then
     cp ../../src/resources/config/tci-server/template.config.yml config.yml
 fi
+if [ ! -f tci.css ]; then
+    cp ../../src/resources/config/tci-server/tci.css tci.css
+fi
+if [ ! -f org.codefirst.SimpleThemeDecorator.xml ]; then
+    cp ../../src/resources/config/org.codefirst.SimpleThemeDecorator.xml org.codefirst.SimpleThemeDecorator.xml
+fi
 
 # activate set-env.sh script
 source .config
@@ -48,8 +54,8 @@ if [[ "$action" == "start"  || "$action" == "restart" ]]; then
 
     mkdir -p .data/jenkins_home/userContent
     cp -f ../../src/resources/images/tci-small-logo.png .data/jenkins_home/userContent | true
-    cp -f ../../src/resources/config/tci-server/tci.css .data/jenkins_home/userContent | true
-    cp -f ../../src/resources/config/org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
+    cp -f tci.css .data/jenkins_home/userContent/tci.css | true
+    cp -f org.codefirst.SimpleThemeDecorator.xml .data/jenkins_home | true
     docker-compose up -d
     sleep 2
     counter=0
