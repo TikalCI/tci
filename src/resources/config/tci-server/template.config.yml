@@ -48,3 +48,12 @@ pipeline_libraries:
     allowVersionOverride: true
     includeInChangesets: true
 
+seed_jobs:
+  tci-server-sanity-check:
+    source:
+      remote: git@github.com:TikalCI/tci-pipelines.git
+      branch: '${TCI_PIPELINES_BRANCH}'
+      credentialsId: gitsshkey
+
+    pipeline: src/pipelines/bootstrap/tci-server-sanity-check/Jenkinsfile
+    executeWhen: never
