@@ -1,7 +1,8 @@
 version: '2'
 services:
-  jenkins-master:
-    image: tci-master
+  tci-master:
+    restart: always
+    :ximage: tci-master
     ports:
       - '8080:8080'
       - '50000:50000'
