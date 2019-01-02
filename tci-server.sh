@@ -5,24 +5,22 @@ set -e
 mkdir -p environments/tci-server
 cd environments/tci-server
 
-if [ ! -f .config ]; then
-    cp ../../src/resources/config/tci-server/template.config .config
+if [ ! -f tci.config ]; then
+    cp ../../src/resources/config/tci-server/tci.config.template tci.config
 fi
+source tci.config
+
+sed "s/TCI_SERVER_TITLE_TEXT/${TCI_SERVER_TITLE_TEXT}/ ; s/TCI_SERVER_TITLE_COLOR/${TCI_SERVER_TITLE_COLOR}/ ; s/TCI_BANNER_COLOR/${TCI_BANNER_COLOR}/" ../../src/resources/config/tci-server/tci.css.template > tci.css
+
 if [ ! -f docker-compose.yml ]; then
-    cp ../../src/resources/config/tci-server/template.docker-compose.yml docker-compose.yml
+    cp ../../src/resources/config/tci-server/docker-compose.yml.template docker-compose.yml
 fi
 if [ ! -f config.yml ]; then
-    cp ../../src/resources/config/tci-server/template.config.yml config.yml
-fi
-if [ ! -f tci.css ]; then
-    cp ../../src/resources/config/tci-server/tci.css tci.css
+    cp ../../src/resources/config/tci-server/config.yml.template config.yml
 fi
 if [ ! -f org.codefirst.SimpleThemeDecorator.xml ]; then
-    cp ../../src/resources/config/org.codefirst.SimpleThemeDecorator.xml org.codefirst.SimpleThemeDecorator.xml
+    cp ../../src/resources/config/org.codefirst.SimpleThemeDecorator.xml.template org.codefirst.SimpleThemeDecorator.xml
 fi
-
-# activate set-env.sh script
-source .config
 
 # set action defaulted to 'restart'
 action='restart'

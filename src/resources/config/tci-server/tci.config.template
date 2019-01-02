@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export GITHUB_PRIVATE_KEY_FILE_PATH=~/.ssh/id_rsa
+export TCI_SERVER_TITLE_TEXT='TCI'
+export TCI_SERVER_TITLE_COLOR=orange
+export TCI_BANNER_COLOR=darkblue
+#export TCI_HOST_IP=
